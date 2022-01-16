@@ -1,0 +1,63 @@
+import { useDispatch, useSelector } from "react-redux";
+import { setPublicationDate } from "../../../redux/filter/actions";
+
+export default function FilterPriceRange() {
+	const state = useSelector((state) => state.setPublicationDate);
+	const dispatch = useDispatch();
+
+	return (
+		<section className="col-span-12 sm:col-span-6 lg:col-span-2 lg:row-start-2 mb-4">
+			<h4 className="font-normal text-lg mb-2">Publication date</h4>
+			<select
+				className="py-1 w-36 text-center text-sm font-light border border-orange-400 rounded outline-none"
+				name="publication_date"
+				value={state}
+				onChange={({ target: { value } }) => {
+					dispatch(setPublicationDate(getPublicationDate(value)));
+				}}
+			>
+				<option value="all">All</option>
+				<option value="24h">Last 24 hours</option>
+				<option value="48h">Last 48 hours</option>
+				<option value="1w">Last week</option>
+				<option value="1m">Last month</option>
+				<option value="1y">Last year</option>
+			</select>
+		</section>
+	);
+}
+
+function getPublicationDate(value) {
+	const date = new Date();
+
+	switch (value) {
+		case "24h": {
+			date.setDate(date.getDate() - 1);
+
+			return date;
+		}
+		case "48h": {
+			date.setDate(date.getDate() - 2);
+
+			return date;
+		}
+		case "1w": {
+			date.setDate(date.getDate() - 7);
+
+			return date;
+		}
+		case "1m": {
+			date.setMonth(date.getMonth() - 1);
+
+			return date;
+		}
+		case "1y": {
+			date.setFullYear(date.getFullYear() - 1);
+
+			return date;
+		}
+		default: {
+			return null;
+		}
+	}
+}
