@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { toggleNumBedrooms } from "../../../redux/filter/actions";
+import { switchNumBedrooms } from "../../../redux/filter/actions";
 import InputButton from "../InputButton";
 
 export default function FilterBedrooms() {
@@ -16,7 +16,7 @@ export default function FilterBedrooms() {
 							key={value}
 							isActive={num_bedrooms.includes(value)}
 							onClick={() => {
-								dispatch(toggleNumBedrooms(value));
+								dispatch(switchNumBedrooms(value));
 							}}
 						>
 							{value}

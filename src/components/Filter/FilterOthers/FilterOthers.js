@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { toggleFilters } from "../../../redux/filter/actions";
+import { switchFilters } from "../../../redux/filter/actions";
 import InputCheck from "../InputCheck";
 
 export default function FilterOthers() {
@@ -14,7 +14,7 @@ export default function FilterOthers() {
 				label="Swimming pool"
 				checked={filters.includes("has_pool")}
 				onChange={() => {
-					dispatch(toggleFilters("has_pool"));
+					dispatch(switchFilters("has_pool"));
 				}}
 			/>
 			<InputCheck
@@ -22,7 +22,7 @@ export default function FilterOthers() {
 				label="Lift"
 				checked={filters.includes("has_lift")}
 				onChange={() => {
-					dispatch(toggleFilters("has_lift"));
+					dispatch(switchFilters("has_lift"));
 				}}
 			/>
 			<InputCheck
@@ -30,7 +30,7 @@ export default function FilterOthers() {
 				label="Garden"
 				checked={filters.includes("has_garden")}
 				onChange={() => {
-					dispatch(toggleFilters("has_garden"));
+					dispatch(switchFilters("has_garden"));
 				}}
 			/>
 			<InputCheck
@@ -38,7 +38,7 @@ export default function FilterOthers() {
 				label="Air conditioning"
 				checked={filters.includes("has_ac")}
 				onChange={() => {
-					dispatch(toggleFilters("has_ac"));
+					dispatch(switchFilters("has_ac"));
 				}}
 			/>
 			<InputCheck
@@ -46,7 +46,7 @@ export default function FilterOthers() {
 				label="Terrace"
 				checked={filters.includes("has_terrace")}
 				onChange={() => {
-					dispatch(toggleFilters("has_terrace"));
+					dispatch(switchFilters("has_terrace"));
 				}}
 			/>
 			<InputCheck
@@ -54,7 +54,7 @@ export default function FilterOthers() {
 				label="Pets allowed"
 				checked={filters.includes("allowed_pets")}
 				onChange={() => {
-					dispatch(toggleFilters("allowed_pets"));
+					dispatch(switchFilters("allowed_pets"));
 				}}
 			/>
 		</section>

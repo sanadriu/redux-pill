@@ -10,6 +10,4 @@ const initialState = {
 	search: "",
 };
 
-console.log(initialState);
-
 export default initialState;

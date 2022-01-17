@@ -1,7 +1,8 @@
 import { useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { useSearchParams } from "react-router-dom";
-import { setUrlParams } from "../../redux/filter/actions";
+import { useDispatch, useSelector } from "react-redux";
+import { setSearchParams } from "../../redux/filter/actions";
+import { stringifyUrl } from "query-string";
+
 import FilterBathrooms from "./FilterBathrooms";
 import FilterBedrooms from "./FilterBedrooms";
 import FilterCondition from "./FilterCondition";
@@ -10,15 +11,19 @@ import FilterPriceRange from "./FilterPriceRange";
 import FilterPublication from "./FilterPublication";
 import FilterType from "./FilterType";
 
-export default function Filter(props) {
-	const [searchParams] = useSearchParams();
+export default function Filter() {
 	const dispatch = useDispatch();
-
-	console.log(searchParams.toString());
+	const filter = useSelector((state) => state.filter);
 
 	useEffect(() => {
-		dispatch(setUrlParams(searchParams));
-	}, [dispatch, searchParams]);
+		dispatch(setSearchParams(window.location.search));
+	}, []);
+
+	useEffect(() => {
+		const url = stringifyUrl({ url: window.location.toString().replace(window.location.search, ""), query: filter });
+
+		window.history.replaceState({}, null, url);
+	}, [filter]);
 
 	return (
 		<form>
