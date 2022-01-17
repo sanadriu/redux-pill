@@ -3,7 +3,7 @@ import { toggleNumBathrooms } from "../../../redux/filter/actions";
 import InputButton from "../InputButton";
 
 export default function FilterBedrooms() {
-	const state = useSelector((state) => state.filter.num_bathrooms);
+	const { num_bathrooms } = useSelector((state) => state.filter);
 	const dispatch = useDispatch();
 
 	return (
@@ -14,7 +14,7 @@ export default function FilterBedrooms() {
 					return (
 						<InputButton
 							key={value}
-							isActive={state.includes(value)}
+							isActive={num_bathrooms.includes(value)}
 							onClick={() => {
 								dispatch(toggleNumBathrooms(value));
 							}}

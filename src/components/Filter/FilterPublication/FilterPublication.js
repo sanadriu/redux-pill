@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setPublicationDate } from "../../../redux/filter/actions";
 
 export default function FilterPriceRange() {
-	const state = useSelector((state) => state.setPublicationDate);
+	const { publicationDate } = useSelector((state) => state.filter);
 	const dispatch = useDispatch();
 
 	return (
@@ -11,7 +11,7 @@ export default function FilterPriceRange() {
 			<select
 				className="py-1 w-36 text-center text-sm font-light border border-orange-400 rounded outline-none"
 				name="publication_date"
-				value={state}
+				value={publicationDate}
 				onChange={({ target: { value } }) => {
 					dispatch(setPublicationDate(getPublicationDate(value)));
 				}}

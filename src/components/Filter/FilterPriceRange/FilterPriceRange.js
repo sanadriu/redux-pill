@@ -2,10 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setMinPrice, setMaxPrice } from "../../../redux/filter/actions";
 
 export default function FilterPriceRange() {
-	const state = useSelector((state) => ({
-		min_price: state.filter.min_price,
-		max_price: state.filter.max_price,
-	}));
+	const { min_price, max_price } = useSelector((state) => state.filter);
 
 	const dispatch = useDispatch();
 
@@ -19,9 +16,9 @@ export default function FilterPriceRange() {
 					type="number"
 					step={10000}
 					onChange={({ target: { value } }) => dispatch(setMinPrice(value))}
-					value={state.min_price}
+					value={min_price}
 					min={0}
-					max={state.max_price}
+					max={max_price}
 				/>
 				<span> - </span>
 				<input
@@ -30,8 +27,8 @@ export default function FilterPriceRange() {
 					type="number"
 					step={10000}
 					onChange={({ target: { value } }) => dispatch(setMaxPrice(value))}
-					value={state.max_price}
-					min={state.min_price}
+					value={max_price}
+					min={min_price}
 					max={10_000_000}
 				/>
 			</div>

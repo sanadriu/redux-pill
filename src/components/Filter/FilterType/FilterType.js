@@ -3,7 +3,7 @@ import { toggleType } from "../../../redux/filter/actions";
 import InputCheck from "../InputCheck";
 
 export default function FilterType() {
-	const state = useSelector((state) => state.filter.type);
+	const { type } = useSelector((state) => state.filter);
 	const dispatch = useDispatch();
 
 	return (
@@ -12,7 +12,7 @@ export default function FilterType() {
 			<InputCheck
 				name="type_apartment"
 				label="Flat/Apartment"
-				checked={state.includes("apartment")}
+				checked={type.includes("apartment")}
 				onChange={() => {
 					dispatch(toggleType("apartment"));
 				}}
@@ -20,7 +20,7 @@ export default function FilterType() {
 			<InputCheck
 				name="type_house"
 				label="House"
-				checked={state.includes("house")}
+				checked={type.includes("house")}
 				onChange={() => {
 					dispatch(toggleType("house"));
 				}}
@@ -28,7 +28,7 @@ export default function FilterType() {
 			<InputCheck
 				name="type_duplex"
 				label="Duplex"
-				checked={state.includes("duplex")}
+				checked={type.includes("duplex")}
 				onChange={() => {
 					dispatch(toggleType("duplex"));
 				}}
@@ -36,7 +36,7 @@ export default function FilterType() {
 			<InputCheck
 				name="type_penthouse"
 				label="Penthouse"
-				checked={state.includes("penthouse")}
+				checked={type.includes("penthouse")}
 				onChange={() => {
 					dispatch(toggleType("penthouse"));
 				}}

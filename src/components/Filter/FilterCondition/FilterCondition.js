@@ -3,7 +3,7 @@ import { toggleCondition } from "../../../redux/filter/actions";
 import InputCheck from "../InputCheck";
 
 export default function FilterCondition() {
-	const state = useSelector((state) => state.filter.condition);
+	const { condition } = useSelector((state) => state.filter);
 	const dispatch = useDispatch();
 
 	return (
@@ -12,7 +12,7 @@ export default function FilterCondition() {
 			<InputCheck
 				name="condition_new"
 				label="New"
-				checked={state.includes("new")}
+				checked={condition.includes("new")}
 				onChange={() => {
 					dispatch(toggleCondition("new"));
 				}}
@@ -20,7 +20,7 @@ export default function FilterCondition() {
 			<InputCheck
 				name="condition_good"
 				label="Good"
-				checked={state.includes("good")}
+				checked={condition.includes("good")}
 				onChange={() => {
 					dispatch(toggleCondition("good"));
 				}}
@@ -28,7 +28,7 @@ export default function FilterCondition() {
 			<InputCheck
 				name="condition_to_restore"
 				label="Restoration required"
-				checked={state.includes("to_restore")}
+				checked={condition.includes("to_restore")}
 				onChange={() => {
 					dispatch(toggleCondition("to_restore"));
 				}}

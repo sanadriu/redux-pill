@@ -3,7 +3,7 @@ import { toggleFilters } from "../../../redux/filter/actions";
 import InputCheck from "../InputCheck";
 
 export default function FilterOthers() {
-	const state = useSelector((state) => state.filter.filters);
+	const { filters } = useSelector((state) => state.filter);
 	const dispatch = useDispatch();
 
 	return (
@@ -12,7 +12,7 @@ export default function FilterOthers() {
 			<InputCheck
 				name="has_pool"
 				label="Swimming pool"
-				checked={state.includes("has_pool")}
+				checked={filters.includes("has_pool")}
 				onChange={() => {
 					dispatch(toggleFilters("has_pool"));
 				}}
@@ -20,7 +20,7 @@ export default function FilterOthers() {
 			<InputCheck
 				name="has_lift"
 				label="Lift"
-				checked={state.includes("has_lift")}
+				checked={filters.includes("has_lift")}
 				onChange={() => {
 					dispatch(toggleFilters("has_lift"));
 				}}
@@ -28,7 +28,7 @@ export default function FilterOthers() {
 			<InputCheck
 				name="has_garden"
 				label="Garden"
-				checked={state.includes("has_garden")}
+				checked={filters.includes("has_garden")}
 				onChange={() => {
 					dispatch(toggleFilters("has_garden"));
 				}}
@@ -36,7 +36,7 @@ export default function FilterOthers() {
 			<InputCheck
 				name="has_ac"
 				label="Air conditioning"
-				checked={state.includes("has_ac")}
+				checked={filters.includes("has_ac")}
 				onChange={() => {
 					dispatch(toggleFilters("has_ac"));
 				}}
@@ -44,7 +44,7 @@ export default function FilterOthers() {
 			<InputCheck
 				name="has_terrace"
 				label="Terrace"
-				checked={state.includes("has_terrace")}
+				checked={filters.includes("has_terrace")}
 				onChange={() => {
 					dispatch(toggleFilters("has_terrace"));
 				}}
@@ -52,7 +52,7 @@ export default function FilterOthers() {
 			<InputCheck
 				name="allowed_pets"
 				label="Pets allowed"
-				checked={state.includes("allowed_pets")}
+				checked={filters.includes("allowed_pets")}
 				onChange={() => {
 					dispatch(toggleFilters("allowed_pets"));
 				}}

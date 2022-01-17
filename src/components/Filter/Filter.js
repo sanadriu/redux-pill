@@ -1,5 +1,7 @@
-import { useSelector } from "react-redux";
-
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { useSearchParams } from "react-router-dom";
+import { setUrlParams } from "../../redux/filter/actions";
 import FilterBathrooms from "./FilterBathrooms";
 import FilterBedrooms from "./FilterBedrooms";
 import FilterCondition from "./FilterCondition";
@@ -9,12 +11,18 @@ import FilterPublication from "./FilterPublication";
 import FilterType from "./FilterType";
 
 export default function Filter(props) {
-	const state = useSelector((state) => state.filter);
-	console.log(state);
+	const [searchParams] = useSearchParams();
+	const dispatch = useDispatch();
+
+	console.log(searchParams.toString());
+
+	useEffect(() => {
+		dispatch(setUrlParams(searchParams));
+	}, [dispatch, searchParams]);
 
 	return (
 		<form>
-			<div className="container mx-auto grid grid-cols-12 shadow-md rounded-md p-4">
+			<div className="container mx-auto shadow-md rounded-md p-4 grid grid-cols-12 ">
 				<FilterType />
 				<FilterCondition />
 				<FilterBedrooms />

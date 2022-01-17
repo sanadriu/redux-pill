@@ -1,5 +1,6 @@
-import { TOGGLE_PROPERTY, SET_PROPERTY } from "./types";
+import { SET_URL_PARAMS, SET_PROPERTY, TOGGLE_PROPERTY } from "./types";
 import initialState from "./state";
+import { getFilterFromUrl } from "./utils";
 
 export default function reducer(state = initialState, action) {
 	switch (action.type) {
@@ -23,20 +24,11 @@ export default function reducer(state = initialState, action) {
 
 			return { ...state };
 		}
+		case SET_URL_PARAMS: {
+			return getFilterFromUrl(action.payload);
+		}
 		default: {
 			return state;
 		}
 	}
 }
-
-// if (index === -1) {
-// 	return {
-// 		...state,
-// 		[property]: [...state[property], value],
-// 	};
-// } else {
-// 	return {
-// 		...state,
-// 		[property]: state[property].filter((item) => item !== value),
-// 	};
-// }

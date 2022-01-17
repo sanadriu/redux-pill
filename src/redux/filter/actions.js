@@ -1,4 +1,8 @@
-import { TOGGLE_PROPERTY, SET_PROPERTY } from "./types";
+import { SET_URL_PARAMS, SET_PROPERTY, TOGGLE_PROPERTY } from "./types";
+
+export function setUrlParams(url) {
+	return { type: SET_URL_PARAMS, payload: url };
+}
 
 export function toggleType(value) {
 	return { type: TOGGLE_PROPERTY, payload: { property: "type", value } };
