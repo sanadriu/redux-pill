@@ -1,6 +1,6 @@
-import { FILTER_CLEAR, FILTER_SET_SEARCH_PARAMS, FILTER_SET_VALUE, FILTER_SWITCH_LIST_VALUE } from "./types";
+import { FILTER_CLEAR, FILTER_LOAD, FILTER_SET_VALUE, FILTER_SWITCH_LIST_VALUE } from "./types";
 import initialState from "./state";
-import { getFilterParams } from "./utils";
+import { parse } from "query-string";
 
 export default function reducer(state = initialState, action) {
 	switch (action.type) {
@@ -24,8 +24,8 @@ export default function reducer(state = initialState, action) {
 
 			return { ...state };
 		}
-		case FILTER_SET_SEARCH_PARAMS: {
-			return getFilterParams(action.payload);
+		case FILTER_LOAD: {
+			return { ...state, ...parse(action.payload) };
 		}
 		case FILTER_CLEAR: {
 			return initialState;

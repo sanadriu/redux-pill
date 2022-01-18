@@ -13,7 +13,7 @@ export default function FilterPriceRange() {
 				name="publication_date"
 				value={publicationDate}
 				onChange={({ target: { value } }) => {
-					dispatch(setPublicationDate(getPublicationDate(value)));
+					dispatch(setPublicationDate(value));
 				}}
 			>
 				<option value="all">All</option>
@@ -25,39 +25,4 @@ export default function FilterPriceRange() {
 			</select>
 		</section>
 	);
-}
-
-function getPublicationDate(value) {
-	const date = new Date();
-
-	switch (value) {
-		case "24h": {
-			date.setDate(date.getDate() - 1);
-
-			return date;
-		}
-		case "48h": {
-			date.setDate(date.getDate() - 2);
-
-			return date;
-		}
-		case "1w": {
-			date.setDate(date.getDate() - 7);
-
-			return date;
-		}
-		case "1m": {
-			date.setMonth(date.getMonth() - 1);
-
-			return date;
-		}
-		case "1y": {
-			date.setFullYear(date.getFullYear() - 1);
-
-			return date;
-		}
-		default: {
-			return null;
-		}
-	}
 }

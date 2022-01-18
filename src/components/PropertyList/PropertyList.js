@@ -1,14 +1,16 @@
 import { useEffect } from "react";
+import { useSelector } from "react-redux";
 import useGetProperties from "../../hooks/useGetProperties";
 import PropertyItem from "../PropertyItem";
 
 export default function PropertyList() {
+	const filter = useSelector((state) => state.filter);
 	const { request, handleRequest } = useGetProperties();
 	const { status, error, data: properties } = request;
 
 	useEffect(() => {
-		handleRequest();
-	}, [handleRequest]);
+		handleRequest(filter);
+	}, [handleRequest, filter]);
 
 	return (
 		<section className="container mx-auto shadow-md rounded-md p-4 flex flex-col gap-4">
@@ -17,8 +19,8 @@ export default function PropertyList() {
 				<span className="text-light text-gray-500 col-span-2">Address</span>
 				<span className="text-light text-gray-500">Price</span>
 				<span className="text-light text-gray-500 col-span-2">Characteristics</span>
-				<span className="text-light text-center text-gray-500">Mark as sold</span>
-				<span className="text-light text-center text-gray-500">Remove</span>
+				<span className="text-light text-gray-500 text-center">Mark as sold</span>
+				<span className="text-light text-gray-500 text-center">Remove</span>
 			</div>
 			{status === "loading"}
 			{status === "success" &&

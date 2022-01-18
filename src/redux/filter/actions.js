@@ -1,4 +1,4 @@
-import { FILTER_SET_SEARCH_PARAMS, FILTER_SET_VALUE, FILTER_SWITCH_LIST_VALUE, FILTER_CLEAR } from "./types";
+import { FILTER_LOAD, FILTER_SET_VALUE, FILTER_SWITCH_LIST_VALUE, FILTER_CLEAR } from "./types";
 
 export function switchType(value) {
 	return { type: FILTER_SWITCH_LIST_VALUE, payload: { property: "type", value } };
@@ -36,8 +36,8 @@ export function setSearchString(value) {
 	return { type: FILTER_SET_VALUE, payload: { property: "search", value } };
 }
 
-export function setSearchParams(searchQuery) {
-	return { type: FILTER_SET_SEARCH_PARAMS, payload: searchQuery };
+export function loadFilter(query) {
+	return { type: FILTER_LOAD, payload: query };
 }
 
 export function clearFilter() {

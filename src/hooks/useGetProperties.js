@@ -1,16 +1,18 @@
-import { useDispatch, useSelector } from "react-redux";
-import { loading, success, fail, reset } from "../redux/request/actions";
+import { useCallback, useReducer } from "react";
+
+import requestReducer from "./request/reducer";
+import initialState from "./request/state";
+import { loading, success, fail, reset } from "./request/actions";
+
 import { getProperties } from "../api";
-import { useCallback } from "react";
 
 export default function useGetProperties() {
-	const request = useSelector((state) => state.properties);
-	const dispatch = useDispatch();
+	const [request, dispatch] = useReducer(requestReducer, initialState);
 
-	function handleRequest() {
+	function handleRequest(filter) {
 		dispatch(loading());
 
-		getProperties()
+		getProperties(filter)
 			.then((data) => {
 				dispatch(success(data));
 			})
