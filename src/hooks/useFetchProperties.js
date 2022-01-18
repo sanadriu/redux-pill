@@ -6,7 +6,7 @@ import { loading, success, fail, reset } from "./request/actions";
 
 import { getProperties } from "../api";
 
-export default function useGetProperties() {
+export default function useFetchProperties() {
 	const [request, dispatch] = useReducer(requestReducer, initialState);
 
 	function handleRequest(filter) {

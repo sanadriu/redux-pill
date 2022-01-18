@@ -20,6 +20,14 @@ export function switchNumBathrooms(value) {
 	return { type: FILTER_SWITCH_LIST_VALUE, payload: { property: "num_bathrooms", value } };
 }
 
+export function setMinNumBedrooms(value) {
+	return { type: FILTER_SET_VALUE, payload: { property: "num_bedrooms_gte", value } };
+}
+
+export function setMinNumBathrooms(value) {
+	return { type: FILTER_SET_VALUE, payload: { property: "num_bathrooms_gte", value } };
+}
+
 export function setMinPrice(value) {
 	return { type: FILTER_SET_VALUE, payload: { property: "min_price", value } };
 }
@@ -32,7 +40,7 @@ export function setPublicationDate(value) {
 	return { type: FILTER_SET_VALUE, payload: { property: "publication_date", value } };
 }
 
-export function setSearchString(value) {
+export function setSearchValue(value) {
 	return { type: FILTER_SET_VALUE, payload: { property: "search", value } };
 }
 

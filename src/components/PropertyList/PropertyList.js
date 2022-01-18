@@ -1,16 +1,19 @@
 import { useEffect } from "react";
-import { useSelector } from "react-redux";
-import useGetProperties from "../../hooks/useGetProperties";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchProperties } from "../../redux/properties/actions";
 import PropertyItem from "../PropertyItem";
 
 export default function PropertyList() {
 	const filter = useSelector((state) => state.filter);
-	const { request, handleRequest } = useGetProperties();
-	const { status, error, data: properties } = request;
+	const properties = useSelector((state) => state.properties);
+
+	const dispatch = useDispatch();
+
+	const { status, error, result } = properties;
 
 	useEffect(() => {
-		handleRequest(filter);
-	}, [handleRequest, filter]);
+		dispatch(fetchProperties(filter));
+	}, [dispatch, filter]);
 
 	return (
 		<section className="container mx-auto shadow-md rounded-md p-4 flex flex-col gap-4">
@@ -24,8 +27,8 @@ export default function PropertyList() {
 			</div>
 			{status === "loading"}
 			{status === "success" &&
-				properties?.length &&
-				properties.map((property) => <PropertyItem key={property.id} {...property} />)}
+				result?.length &&
+				result.map((property) => <PropertyItem key={property.id} {...property} />)}
 			{status === "error" && <div>{error.message}</div>}
 		</section>
 	);

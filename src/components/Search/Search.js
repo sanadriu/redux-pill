@@ -10,7 +10,7 @@ export default function Search() {
 	return (
 		<div className="flex justify-between gap-1 w-72 p-1 rounded-3xl bg-white/40">
 			<input
-				className="flex-grow py-2 px-4 rounded-md rounded-tl-3xl rounded-bl-3xl shadow-inner font-light outline-none bg-white/80 border focus:border-orange-300 text-orange-500 placeholder:text-orange-500"
+				className="flex-grow py-2 px-4 rounded-md rounded-tl-3xl rounded-bl-3xl shadow-inner font-light outline-none bg-white/80 border focus:border-orange-300 text-orange-500 placeholder:text-orange-300"
 				placeholder="False Street, 123"
 				value={search}
 				onChange={({ target: { value } }) => {

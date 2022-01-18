@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { loadFilter } from "../../redux/filter/actions";
+import { clearFilter, loadFilter } from "../../redux/filter/actions";
 import { stringify } from "query-string";
 
 import FilterBathrooms from "./FilterBathrooms";
@@ -10,7 +11,9 @@ import FilterOthers from "./FilterOthers";
 import FilterPriceRange from "./FilterPriceRange";
 import FilterPublication from "./FilterPublication";
 import FilterType from "./FilterType";
-import { useLocation, useNavigate } from "react-router-dom";
+
+import FilterSearch from "./FilterSearch";
+import InputButton from "./InputButton";
 
 export default function Filter() {
 	const filter = useSelector((state) => state.filter);
@@ -34,8 +37,18 @@ export default function Filter() {
 	}, [filter, navigate]);
 
 	return (
-		<form>
-			<div className="container mx-auto shadow-md rounded-md p-4 grid grid-cols-12 ">
+		<form className="flex flex-col gap-4">
+			<div className="container mx-auto shadow-md rounded-md p-2 flex justify-between items-center">
+				<FilterSearch />
+				<InputButton
+					onClick={() => {
+						dispatch(clearFilter());
+					}}
+				>
+					Clear
+				</InputButton>
+			</div>
+			<div className="container mx-auto shadow-md rounded-md p-4 grid grid-cols-1">
 				<FilterType />
 				<FilterCondition />
 				<FilterBedrooms />
