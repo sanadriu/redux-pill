@@ -2,39 +2,33 @@ import { PROPERTIES_LOADING, PROPERTIES_SET_ERROR, PROPERTIES_SET_RESULT, PROPER
 import { getProperties } from "../../api";
 
 function setPropertiesLoading() {
-	return { type: PROPERTIES_LOADING };
+  return { type: PROPERTIES_LOADING };
 }
 
 function setPropertiesResult(result) {
-	return { type: PROPERTIES_SET_RESULT, payload: result };
+  return { type: PROPERTIES_SET_RESULT, payload: result };
 }
 
 function setPropertiesError(error) {
-	return { type: PROPERTIES_SET_ERROR, payload: error };
+  return { type: PROPERTIES_SET_ERROR, payload: error };
 }
 
 export function clearProperties() {
-	return { type: PROPERTIES_RESET };
+  return { type: PROPERTIES_RESET };
 }
 
 export function fetchProperties(filter) {
-	return async (dispatch, getState) => {
-		const {
-			properties: { status },
-		} = getState();
+  return async (dispatch, getState) => {
+    dispatch(setPropertiesLoading());
 
-		// if (status === "loading") return;
+    try {
+      const result = await getProperties(filter);
 
-		dispatch(setPropertiesLoading());
+      console.log(filter);
 
-		try {
-			const result = await getProperties(filter);
-
-			console.log(filter);
-
-			dispatch(setPropertiesResult(result));
-		} catch (error) {
-			dispatch(setPropertiesError(error));
-		}
-	};
+      dispatch(setPropertiesResult(result));
+    } catch (error) {
+      dispatch(setPropertiesError(error));
+    }
+  };
 }

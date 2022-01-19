@@ -1,26 +1,27 @@
-import { useCallback, useState, useEffect } from "react";
+import { useCallback, useRef, useEffect } from "react";
 
 export default function useTimer() {
-	const [timer, setTimer] = useState(null);
+  const timer = useRef(null);
 
-	function runTimer(cb = () => {}, time = 1000) {
-		if (timer) clearTimeout(timer);
+  const runTimer = useCallback((cb = () => {}, time = 1000) => {
+    if (timer.current) clearTimeout(timer.current);
 
-		setTimer(setTimeout(cb, time));
-	}
+    timer.current = setTimeout(cb, time);
+  }, []);
 
-	function cancelTimer() {
-		if (timer) clearTimeout(timer);
+  const cancelTimer = useCallback(() => {
+    if (timer.current) clearTimeout(timer.current);
 
-		setTimer(null);
-	}
+    timer.current = null;
+  }, []);
 
-	useEffect(() => {
-		return cancelTimer;
-	}, [cancelTimer]);
+  useEffect(() => {
+    return cancelTimer;
+  }, [cancelTimer]);
 
-	return {
-		runTimer: useCallback(runTimer, [runTimer]),
-		cancelTimer: useCallback(cancelTimer, [cancelTimer]),
-	};
+  return {
+    runTimer,
+    cancelTimer,
+    status: timer.current === null ? "idle" : "running",
+  };
 }
