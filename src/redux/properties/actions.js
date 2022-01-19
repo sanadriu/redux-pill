@@ -23,7 +23,7 @@ export function fetchProperties(filter) {
 			properties: { status },
 		} = getState();
 
-		if (status === "loading") return;
+		// if (status === "loading") return;
 
 		dispatch(setPropertiesLoading());
 

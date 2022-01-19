@@ -1,19 +1,24 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import useTimer from "../../hooks/useTimer";
 import { fetchProperties } from "../../redux/properties/actions";
 import PropertyItem from "../PropertyItem";
 
 export default function PropertyList() {
 	const filter = useSelector((state) => state.filter);
 	const properties = useSelector((state) => state.properties);
+	const { runTimer, cancelTimer } = useTimer();
 
 	const dispatch = useDispatch();
 
 	const { status, error, result } = properties;
 
 	useEffect(() => {
-		dispatch(fetchProperties(filter));
-	}, [dispatch, filter]);
+		runTimer(() => {
+			dispatch(fetchProperties(filter));
+			console.log("holi");
+		}, 300);
+	}, [dispatch, filter, runTimer]);
 
 	return (
 		<section className="container mx-auto shadow-md rounded-md p-4 flex flex-col gap-4">

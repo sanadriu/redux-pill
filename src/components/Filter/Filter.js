@@ -48,7 +48,7 @@ export default function Filter() {
 					Clear
 				</InputButton>
 			</div>
-			<div className="container mx-auto shadow-md rounded-md p-4 grid grid-cols-1">
+			<div className="container mx-auto shadow-md rounded-md p-4 grid grid-cols-12">
 				<FilterType />
 				<FilterCondition />
 				<FilterBedrooms />
