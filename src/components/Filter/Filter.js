@@ -1,7 +1,9 @@
-import { useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { useSearchParams } from "react-router-dom";
-import { setUrlParams } from "../../redux/filter/actions";
+import { useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { clearFilter, loadFilter } from "../../redux/filter/actions";
+import { stringify } from "query-string";
+
 import FilterBathrooms from "./FilterBathrooms";
 import FilterBedrooms from "./FilterBedrooms";
 import FilterCondition from "./FilterCondition";
@@ -10,19 +12,43 @@ import FilterPriceRange from "./FilterPriceRange";
 import FilterPublication from "./FilterPublication";
 import FilterType from "./FilterType";
 
-export default function Filter(props) {
-	const [searchParams] = useSearchParams();
-	const dispatch = useDispatch();
+import FilterSearch from "./FilterSearch";
+import InputButton from "./InputButton";
 
-	console.log(searchParams.toString());
+export default function Filter() {
+	const filter = useSelector((state) => state.filter);
+	const dispatch = useDispatch();
+	const navigate = useNavigate();
+	const location = useLocation();
+	const [isFilterInitialized, setFilterInitialized] = useState(false);
 
 	useEffect(() => {
-		dispatch(setUrlParams(searchParams));
-	}, [dispatch, searchParams]);
+		if (!isFilterInitialized) {
+			dispatch(loadFilter(location.search));
+
+			setFilterInitialized(true);
+		}
+	}, [dispatch, isFilterInitialized, location]);
+
+	useEffect(() => {
+		const query = stringify(filter);
+
+		navigate(`/dashboard?${query}`, { replace: true });
+	}, [filter, navigate]);
 
 	return (
-		<form>
-			<div className="container mx-auto shadow-md rounded-md p-4 grid grid-cols-12 ">
+		<form className="flex flex-col gap-4">
+			<div className="container mx-auto shadow-md rounded-md p-2 flex justify-between items-center">
+				<FilterSearch />
+				<InputButton
+					onClick={() => {
+						dispatch(clearFilter());
+					}}
+				>
+					Clear
+				</InputButton>
+			</div>
+			<div className="container mx-auto shadow-md rounded-md p-4 grid grid-cols-12">
 				<FilterType />
 				<FilterCondition />
 				<FilterBedrooms />

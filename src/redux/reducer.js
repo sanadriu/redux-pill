@@ -1,11 +1,11 @@
 import { combineReducers } from "redux";
 
 import filterReducer from "./filter/reducer";
-import requestReducer from "./request/reducer";
+import propertiesReducer from "./properties/reducer";
 
 const reducer = combineReducers({
 	filter: filterReducer,
-	properties: requestReducer,
+	properties: propertiesReducer,
 });
 
 export default reducer;

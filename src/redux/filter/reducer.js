@@ -1,34 +1,65 @@
-import { SET_URL_PARAMS, SET_PROPERTY, TOGGLE_PROPERTY } from "./types";
+import { FILTER_CLEAR, FILTER_LOAD, FILTER_SET_VALUE, FILTER_SWITCH_VALUE, FILTER_SWITCH_LIST_VALUE } from "./types";
 import initialState from "./state";
-import { getFilterFromUrl } from "./utils";
+import { parse } from "query-string";
 
 export default function reducer(state = initialState, action) {
-	switch (action.type) {
-		case TOGGLE_PROPERTY: {
-			const { property, value } = action.payload;
+  switch (action.type) {
+    case FILTER_SWITCH_LIST_VALUE: {
+      const { key, value } = action.payload;
 
-			const index = state[property].indexOf(value);
+      if (!(state[key] instanceof Array)) state[key] = [state[key]];
 
-			if (index === -1) {
-				state[property].push(value);
-			} else {
-				state[property].splice(index, 1);
-			}
+      const index = state[key].indexOf(value);
 
-			return { ...state };
-		}
-		case SET_PROPERTY: {
-			const { property, value } = action.payload;
+      if (index === -1) {
+        state[key].push(value);
+      } else {
+        state[key].splice(index, 1);
+      }
 
-			state[property] = value;
+      return { ...state };
+    }
 
-			return { ...state };
-		}
-		case SET_URL_PARAMS: {
-			return getFilterFromUrl(action.payload);
-		}
-		default: {
-			return state;
-		}
-	}
+    case FILTER_SET_VALUE: {
+      const { key, value } = action.payload;
+
+      state[key] = value;
+
+      return { ...state };
+    }
+
+    case FILTER_SWITCH_VALUE: {
+      const { key } = action.payload;
+
+      switch (state[key]) {
+        case true: {
+          state[key] = false;
+          return { ...state };
+        }
+        case false: {
+          state[key] = undefined;
+          return { ...state };
+        }
+        case undefined: {
+          state[key] = true;
+          return { ...state };
+        }
+        default: {
+          return { ...state };
+        }
+      }
+    }
+
+    case FILTER_LOAD: {
+      return { ...state, ...parse(action.payload, {}) };
+    }
+
+    case FILTER_CLEAR: {
+      return { ...initialState };
+    }
+
+    default: {
+      return state;
+    }
+  }
 }

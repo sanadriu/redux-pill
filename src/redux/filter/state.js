@@ -1,15 +1,20 @@
 const initialState = {
-	type: [],
-	condition: [],
-	filters: [],
-	num_bedrooms: [],
-	num_bathrooms: [],
-	min_price: 0,
-	max_price: 10_000_000,
-	publication_date: "all",
-	search: "",
+  type: [],
+  condition: [],
+  num_bedrooms: [],
+  num_bedrooms_gte: undefined,
+  num_bathrooms: [],
+  num_bathrooms_gte: undefined,
+  price_gte: 0,
+  price_lte: 10_000_000,
+  has_swimming_pool: undefined,
+  has_terrace: undefined,
+  has_garden: undefined,
+  has_lift: undefined,
+  has_air_conditioning: undefined,
+  allow_pets: undefined,
+  publication_date: "all",
+  search: "",
 };
-
-console.log(initialState);
 
 export default initialState;
