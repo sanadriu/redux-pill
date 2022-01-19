@@ -51,7 +51,7 @@ export default function reducer(state = initialState, action) {
     }
 
     case FILTER_LOAD: {
-      return { ...state, ...parse(action.payload, {}) };
+      return { ...state, ...parse(action.payload, { parseBooleans: true }) };
     }
 
     case FILTER_CLEAR: {
