@@ -1,4 +1,4 @@
-export default function inputCheck({ onChange, checked, name, label }) {
+export default function inputCheck({ onChange = () => {}, checked, name, label }) {
 	return (
 		<div className="flex items-center gap-2 p-1">
 			<input

@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { switchNumBathrooms } from "../../../redux/filter/actions";
-import InputButton from "../InputButton";
+import InputButton from "../../InputButton";
 
 export default function FilterBedrooms() {
 	const { num_bathrooms } = useSelector((state) => state.filter);

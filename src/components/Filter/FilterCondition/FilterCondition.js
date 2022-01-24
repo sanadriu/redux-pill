@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { switchCondition } from "../../../redux/filter/actions";
-import InputCheck from "../InputCheck";
+import InputCheck from "../../InputCheck";
 
 export default function FilterCondition() {
 	const { condition } = useSelector((state) => state.filter);

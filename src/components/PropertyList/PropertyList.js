@@ -7,7 +7,7 @@ import PropertyItem from "../PropertyItem";
 export default function PropertyList() {
 	const filter = useSelector((state) => state.filter);
 	const properties = useSelector((state) => state.properties);
-	const { runTimer, cancelTimer } = useTimer();
+	const { runTimer } = useTimer();
 
 	const dispatch = useDispatch();
 
@@ -16,7 +16,6 @@ export default function PropertyList() {
 	useEffect(() => {
 		runTimer(() => {
 			dispatch(fetchProperties(filter));
-			console.log("holi");
 		}, 300);
 	}, [dispatch, filter, runTimer]);
 

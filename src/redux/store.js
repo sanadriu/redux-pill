@@ -3,8 +3,8 @@ import reducer from "./reducer";
 import thunk from "redux-thunk";
 
 const devTools = window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__();
-const middleware = devTools ? compose(applyMiddleware(thunk), devTools) : compose(applyMiddleware(thunk));
+const storeEnhancer = devTools ? compose(applyMiddleware(thunk), devTools) : compose(applyMiddleware(thunk));
 
-const store = createStore(reducer, middleware);
+const store = createStore(reducer, storeEnhancer);
 
 export default store;

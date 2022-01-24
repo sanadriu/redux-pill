@@ -27,13 +27,13 @@ export default function Header() {
 					</NavLink>
 					<NavLink
 						className={({ isActive }) => (isActive ? `${baseStyles.account} shadow-rose-900` : baseStyles.account)}
-						to="/sign-in"
+						to="/login"
 					>
 						Sign In
 					</NavLink>
 					<NavLink
 						className={({ isActive }) => (isActive ? `${baseStyles.account} shadow-rose-900` : baseStyles.account)}
-						to="/sign-up"
+						to="/register"
 					>
 						Sign Up
 					</NavLink>

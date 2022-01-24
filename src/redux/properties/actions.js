@@ -18,19 +18,11 @@ export function clearProperties() {
 }
 
 export function fetchProperties(filter) {
-	return async (dispatch, getState) => {
-		const {
-			properties: { status },
-		} = getState();
-
-		// if (status === "loading") return;
-
+	return async (dispatch) => {
 		dispatch(setPropertiesLoading());
 
 		try {
 			const result = await getProperties(filter);
-
-			console.log(filter);
 
 			dispatch(setPropertiesResult(result));
 		} catch (error) {

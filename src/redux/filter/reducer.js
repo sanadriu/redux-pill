@@ -7,6 +7,8 @@ export default function reducer(state = initialState, action) {
 		case FILTER_SWITCH_LIST_VALUE: {
 			const { key, value } = action.payload;
 
+			console.log(action);
+
 			if (!(state[key] instanceof Array)) state[key] = [state[key]];
 
 			const index = state[key].indexOf(value);
@@ -19,7 +21,6 @@ export default function reducer(state = initialState, action) {
 
 			return { ...state };
 		}
-
 		case FILTER_SET_VALUE: {
 			const { key, value } = action.payload;
 
@@ -27,15 +28,12 @@ export default function reducer(state = initialState, action) {
 
 			return { ...state };
 		}
-
 		case FILTER_LOAD: {
 			return { ...state, ...parse(action.payload, {}) };
 		}
-
 		case FILTER_CLEAR: {
 			return { ...initialState };
 		}
-
 		default: {
 			return state;
 		}

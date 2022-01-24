@@ -13,7 +13,7 @@ import FilterPublication from "./FilterPublication";
 import FilterType from "./FilterType";
 
 import FilterSearch from "./FilterSearch";
-import InputButton from "./InputButton";
+import InputButton from "../InputButton";
 
 export default function Filter() {
 	const filter = useSelector((state) => state.filter);
