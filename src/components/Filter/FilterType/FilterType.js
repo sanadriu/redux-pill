@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { setType } from "../../../redux/filter/actions";
-import InputCheck from "../InputCheck";
+import InputCheck from "../../InputCheck";
 
 export default function FilterType() {
 	const { type } = useSelector((state) => state.filter);

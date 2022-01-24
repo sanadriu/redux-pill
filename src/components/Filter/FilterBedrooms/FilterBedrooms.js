@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { setNumBedrooms, setMinNumBedrooms } from "../../../redux/filter/actions";
-import InputButton from "../InputButton";
+import InputButton from "../../InputButton";
 
 export default function FilterBedrooms() {
 	const { num_bedrooms, num_bedrooms_gte } = useSelector((state) => state.filter);
@@ -14,7 +14,7 @@ export default function FilterBedrooms() {
 					return (
 						<InputButton
 							key={value}
-							isActive={num_bedrooms.includes(value)}
+							isChecked={num_bedrooms.includes(value)}
 							onClick={() => {
 								dispatch(setNumBedrooms(value));
 							}}
@@ -24,7 +24,7 @@ export default function FilterBedrooms() {
 					);
 				})}
 				<InputButton
-					isActive={Boolean(num_bedrooms_gte)}
+					isChecked={Boolean(num_bedrooms_gte)}
 					onClick={() => {
 						dispatch(setMinNumBedrooms(num_bedrooms_gte ? undefined : 4));
 					}}

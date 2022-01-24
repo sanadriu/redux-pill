@@ -7,7 +7,7 @@ import {
 	setLift,
 	setAllowPets,
 } from "../../../redux/filter/actions";
-import InputCheck from "../InputCheck";
+import InputCheck from "../../InputCheck";
 
 export default function FilterOthers() {
 	const { has_swimming_pool, has_terrace, has_garden, has_lift, has_air_conditioning, allow_pets } = useSelector(

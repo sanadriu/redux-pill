@@ -10,6 +10,8 @@ export function setAuthLogin(user) {
 }
 
 export function setAuthLogout() {
+	localStorage.removeItem("user");
+
 	return { type: AUTH_LOGOUT };
 }
 
@@ -23,10 +25,12 @@ export function clearAuthError() {
 
 export function sendLoginRequest({ params }) {
 	return async (dispatch) => {
-		dispatch(setAuthLoading);
+		dispatch(setAuthLoading());
 
 		try {
-			const user = await login({ params });
+			const { data: user } = await login({ params });
+
+			localStorage.setItem("user", JSON.stringify(user));
 
 			dispatch(setAuthLogin(user));
 		} catch (error) {
@@ -37,10 +41,12 @@ export function sendLoginRequest({ params }) {
 
 export function sendRegisterRequest({ params }) {
 	return async (dispatch) => {
-		dispatch(setAuthLoading);
+		dispatch(setAuthLoading());
 
 		try {
-			const user = await register({ params });
+			const { data: user } = await register({ params });
+
+			localStorage.setItem("user", JSON.stringify(user));
 
 			dispatch(setAuthLogin(user));
 		} catch (error) {
