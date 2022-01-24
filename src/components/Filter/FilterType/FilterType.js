@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
-import { switchType } from "../../../redux/filter/actions";
-import InputCheck from "../../InputCheck";
+import { setType } from "../../../redux/filter/actions";
+import InputCheck from "../InputCheck";
 
 export default function FilterType() {
 	const { type } = useSelector((state) => state.filter);
@@ -14,7 +14,7 @@ export default function FilterType() {
 				label="Flat/Apartment"
 				checked={type.includes("apartment")}
 				onChange={() => {
-					dispatch(switchType("apartment"));
+					dispatch(setType("apartment"));
 				}}
 			/>
 			<InputCheck
@@ -22,7 +22,7 @@ export default function FilterType() {
 				label="House"
 				checked={type.includes("house")}
 				onChange={() => {
-					dispatch(switchType("house"));
+					dispatch(setType("house"));
 				}}
 			/>
 			<InputCheck
@@ -30,7 +30,7 @@ export default function FilterType() {
 				label="Duplex"
 				checked={type.includes("duplex")}
 				onChange={() => {
-					dispatch(switchType("duplex"));
+					dispatch(setType("duplex"));
 				}}
 			/>
 			<InputCheck
@@ -38,7 +38,7 @@ export default function FilterType() {
 				label="Penthouse"
 				checked={type.includes("penthouse")}
 				onChange={() => {
-					dispatch(switchType("penthouse"));
+					dispatch(setType("penthouse"));
 				}}
 			/>
 		</section>

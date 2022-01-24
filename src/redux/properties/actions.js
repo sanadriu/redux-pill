@@ -24,6 +24,8 @@ export function fetchProperties(filter) {
 		try {
 			const result = await getProperties(filter);
 
+			console.log(filter);
+
 			dispatch(setPropertiesResult(result));
 		} catch (error) {
 			dispatch(setPropertiesError(error));

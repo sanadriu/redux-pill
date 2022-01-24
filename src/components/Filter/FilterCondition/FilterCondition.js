@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
-import { switchCondition } from "../../../redux/filter/actions";
-import InputCheck from "../../InputCheck";
+import { setCondition } from "../../../redux/filter/actions";
+import InputCheck from "../InputCheck";
 
 export default function FilterCondition() {
 	const { condition } = useSelector((state) => state.filter);
@@ -14,7 +14,7 @@ export default function FilterCondition() {
 				label="New"
 				checked={condition.includes("new")}
 				onChange={() => {
-					dispatch(switchCondition("new"));
+					dispatch(setCondition("new"));
 				}}
 			/>
 			<InputCheck
@@ -22,7 +22,7 @@ export default function FilterCondition() {
 				label="Good"
 				checked={condition.includes("good")}
 				onChange={() => {
-					dispatch(switchCondition("good"));
+					dispatch(setCondition("good"));
 				}}
 			/>
 			<InputCheck
@@ -30,7 +30,7 @@ export default function FilterCondition() {
 				label="Restoration required"
 				checked={condition.includes("to_restore")}
 				onChange={() => {
-					dispatch(switchCondition("to_restore"));
+					dispatch(setCondition("to_restore"));
 				}}
 			/>
 		</section>

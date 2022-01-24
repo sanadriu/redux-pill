@@ -1,60 +1,75 @@
 import { useDispatch, useSelector } from "react-redux";
-import { switchFilters } from "../../../redux/filter/actions";
-import InputCheck from "../../InputCheck";
+import {
+	setTerrace,
+	setSwimmingPool,
+	setGarden,
+	setAirConditioning,
+	setLift,
+	setAllowPets,
+} from "../../../redux/filter/actions";
+import InputCheck from "../InputCheck";
 
 export default function FilterOthers() {
-	const { filters } = useSelector((state) => state.filter);
+	const { has_swimming_pool, has_terrace, has_garden, has_lift, has_air_conditioning, allow_pets } = useSelector(
+		(state) => state.filter
+	);
 	const dispatch = useDispatch();
 
 	return (
 		<section className="col-span-12 lg:col-span-3 lg:row-span-2 lg:row-start-1 grid grid-cols-2 content-start mb-4">
 			<h4 className="col-span-2 font-normal text-lg mb-2">More filters</h4>
 			<InputCheck
-				name="has_pool"
-				label="Swimming pool"
-				checked={filters.includes("has_pool")}
-				onChange={() => {
-					dispatch(switchFilters("has_pool"));
-				}}
-			/>
-			<InputCheck
-				name="has_lift"
-				label="Lift"
-				checked={filters.includes("has_lift")}
-				onChange={() => {
-					dispatch(switchFilters("has_lift"));
-				}}
-			/>
-			<InputCheck
 				name="has_garden"
 				label="Garden"
-				checked={filters.includes("has_garden")}
+				indeterminate={has_garden === undefined}
+				checked={has_garden}
 				onChange={() => {
-					dispatch(switchFilters("has_garden"));
+					dispatch(setGarden());
 				}}
 			/>
 			<InputCheck
-				name="has_ac"
-				label="Air conditioning"
-				checked={filters.includes("has_ac")}
+				name="has_pool"
+				label="Swimming pool"
+				indeterminate={has_swimming_pool === undefined}
+				checked={has_swimming_pool}
 				onChange={() => {
-					dispatch(switchFilters("has_ac"));
+					dispatch(setSwimmingPool());
+				}}
+			/>
+			<InputCheck
+				name="has_air_conditioning"
+				label="Air conditioning"
+				indeterminate={has_air_conditioning === undefined}
+				checked={has_air_conditioning}
+				onChange={() => {
+					dispatch(setAirConditioning());
 				}}
 			/>
 			<InputCheck
 				name="has_terrace"
 				label="Terrace"
-				checked={filters.includes("has_terrace")}
+				indeterminate={has_terrace === undefined}
+				checked={has_terrace}
 				onChange={() => {
-					dispatch(switchFilters("has_terrace"));
+					dispatch(setTerrace());
+				}}
+			/>
+			<InputCheck
+				name="has_lift"
+				label="Lift"
+				indeterminate={has_lift === undefined}
+				checked={has_lift}
+				onChange={() => {
+					dispatch(setLift());
 				}}
 			/>
 			<InputCheck
 				name="allowed_pets"
 				label="Pets allowed"
-				checked={filters.includes("allowed_pets")}
+				indeterminate={allow_pets === undefined}
+				checked={allow_pets}
 				onChange={() => {
-					dispatch(switchFilters("allowed_pets"));
+					dispatch(setAllowPets());
 				}}
 			/>
 		</section>

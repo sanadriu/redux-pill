@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
-import { switchNumBedrooms, setMinNumBedrooms } from "../../../redux/filter/actions";
-import InputButton from "../../InputButton";
+import { setNumBedrooms, setMinNumBedrooms } from "../../../redux/filter/actions";
+import InputButton from "../InputButton";
 
 export default function FilterBedrooms() {
 	const { num_bedrooms, num_bedrooms_gte } = useSelector((state) => state.filter);
@@ -16,7 +16,7 @@ export default function FilterBedrooms() {
 							key={value}
 							isActive={num_bedrooms.includes(value)}
 							onClick={() => {
-								dispatch(switchNumBedrooms(value));
+								dispatch(setNumBedrooms(value));
 							}}
 						>
 							{value}
